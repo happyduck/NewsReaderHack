@@ -1,0 +1,25 @@
+package mof;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
+public class Extractor {
+
+	public static void main(String[] args){
+		Charset charset = Charset.forName("utf-16");
+		Path p = Paths.get("events_dataset1.csv");
+		try (
+			BufferedReader reader = Files.newBufferedReader(p, charset)) {
+		    String line = null;
+		    while ((line = reader.readLine()) != null) {
+		        System.out.println(line);
+		    }
+		} catch (IOException x) {
+		    System.err.format("IOException: %s%n", x);
+		}
+	}
+}
